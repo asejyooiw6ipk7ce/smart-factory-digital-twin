@@ -44,6 +44,15 @@ shelf:
 # 대부분 같은 통신 프로토콜을 공유하고 Fairino SDK도 position/vel/force를
 # 전부 0~100% 비율로만 주고받으므로(물리적 mm 단위는 SDK 레벨에서 안 따짐)
 # 이 프리셋 그대로 써도 된다. device=0 확정.
+#
+# ✅ SDK로도 재확인 완료 (2026-11-25, 실제 FR5 RPC 연결 테스트).
+# GetGripperConfig()를 실제로 호출해보니 (0, [2, 4, 0, 0]) 반환 —
+# company=4, device=0이 펜던트 확인값과 정확히 일치했다. 첫 번째 숫자(2)는
+# "number"라는 필드인데 공식 문서에 정확한 의미가 안 나와 있어서(그리퍼 개수?
+# 내부 등록 번호?) 아직 미확인 — index(=0, MoveGripper/ActGripper에 넘기는 값)와는
+# 다른 값이니 혼동하지 말 것. 이 테스트는 읽기 전용(GetGripperConfig/
+# GetActualJointPosDegree)만 했고, MoveGripper로 실제 그리퍼를 움직여본 적은
+# 아직 없다 — 3.2 티칭 때 처음 실동작 검증.
 gripper:
   company: 4       # 1 Robotiq / 2 Huiling / 3 Tianji / 4 Dahuan(DH-Robotics) / 5 Zhixing
   device: 0        # ✅ 확인됨 — PGI-140 프리셋 (Dahuan 목록에 이것뿐, 실제 펜던트에 이미 활성화되어 있음)
