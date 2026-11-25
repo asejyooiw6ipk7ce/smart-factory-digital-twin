@@ -1,0 +1,50 @@
+# limo.yaml (WBS 2.x 공통 설정)
+#
+# Limo 쪽 노드들(coarse_mover, go_to_station_server, world_pose_tracker)이
+# 공유하는 설정. 여기 숫자들은 전부 "실측 전 플레이스홀더"다 — 실제 선반/바닥
+# 배치를 확정(0.1)하고 ArUco를 부착(0.3)한 뒤, 2.8(Limo 정렬 실측 검증)에서
+# 직접 재서 반드시 다시 채워야 한다.
+
+# 각 station(선반 층 또는 HOME)에 대응하는 ArUco 마커 ID
+marker_ids:
+  LEVEL_1: 1
+  LEVEL_2: 2
+  HOME: 0
+
+# coarse_mover.py가 재생하는 "대략 이동" 구간 시퀀스.
+# 각 구간은 (선속도 m/s, 각속도 rad/s, 지속시간 s)로, 이 시간만큼만 돌리고 넘어간다.
+# 목표: 완벽한 정밀도가 아니라 "ArUco가 카메라 시야에 들어올 만큼" 접근하는 것.
+coarse_routes:
+  LEVEL_1:
+    - {linear_x: 0.2, angular_z: 0.0, duration_s: 3.0}
+  LEVEL_2:
+    - {linear_x: 0.2, angular_z: 0.0, duration_s: 3.0}
+    - {linear_x: 0.0, angular_z: 0.3, duration_s: 1.0}
+  HOME:
+    - {linear_x: -0.2, angular_z: 0.0, duration_s: 3.0}
+
+# world_pose_tracker.py가 "도킹 성공" 이벤트를 받았을 때 누적 오차를 지우기 위해
+# 스냅할, 각 station의 기준 world 좌표 (map/world 프레임 기준, 미터/라디안)
+station_world_poses:
+  LEVEL_1: {x: 1.0, y: 0.0, yaw: 0.0}
+  LEVEL_2: {x: 2.0, y: 0.0, yaw: 0.0}
+  HOME:    {x: 0.0, y: 0.0, yaw: 0.0}
+
+# aruco_docker.py의 P-제어 파라미터
+dock:
+  kp_linear: 0.6
+  kp_angular: 1.2
+  target_distance_m: 0.15
+  distance_tolerance_m: 0.02
+  yaw_tolerance_rad: 0.03
+  max_linear_mps: 0.25
+  max_angular_rps: 0.6
+  stable_frames_required: 5
+  not_found_timeout_s: 3.0
+
+# coarse_mover가 이 거리(m) 이내에서 목표 마커를 보면 정밀 도킹으로 핸드오프한다
+handoff_distance_m: 0.6
+
+# ArUco 물리 마커 한 변의 길이 (미터). 실제 출력한 마커 크기와 반드시 일치해야
+# 거리 추정이 맞는다.
+marker_length_m: 0.1
