@@ -1,0 +1,14 @@
+string STATION=STATION
+string DOCK=DOCK
+string station
+---
+bool success
+string message
+float32 final_error_m
+float32 final_error_yaw
+---
+string PHASE_COARSE=COARSE
+string PHASE_DOCKING=DOCKING
+string PHASE_NOT_FOUND=MARKER_NOT_FOUND
+string phase
+float32 distance_remaining

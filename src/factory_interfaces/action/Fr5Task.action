@@ -1,0 +1,13 @@
+string INBOUND=INBOUND
+string OUTBOUND=OUTBOUND
+string task_type
+int32 level
+---
+bool success
+string PHASE_PICK=PICK
+string PHASE_PLACE=PLACE
+string PHASE_HOME=HOME
+string failed_phase
+string message
+---
+string phase

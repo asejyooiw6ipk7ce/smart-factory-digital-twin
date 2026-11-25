@@ -1,0 +1,1 @@
+SlotStock[] slots

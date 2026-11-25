@@ -1,0 +1,4 @@
+int32 item_id
+---
+bool accepted
+string reason

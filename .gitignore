@@ -1,0 +1,29 @@
+# ROS2 colcon build artifacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# packaging artifacts (regenerate with zip, don't track)
+*.zip
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Unity (추가될 FactoryTwin/ 프로젝트 대비)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+*.csproj
+*.sln
+*.unityproj
+.vs/

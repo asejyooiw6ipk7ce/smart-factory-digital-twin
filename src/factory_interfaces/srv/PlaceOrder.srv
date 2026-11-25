@@ -1,0 +1,6 @@
+int32 item_id
+string customer
+---
+bool accepted
+int32 order_id
+string reason

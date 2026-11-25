@@ -1,0 +1,9 @@
+string MODE_IDLE=IDLE
+string MODE_RUNNING=RUNNING
+string MODE_ERROR=ERROR
+string mode
+string job_type
+int32 order_id
+string step
+string message
+int32 queue_length
