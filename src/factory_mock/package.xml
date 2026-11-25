@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>factory_mock</name>
+  <version>0.0.1</version>
+  <description>팩토리 프로젝트의 Limo/FR5 목업 액션 서버 (WBS 1.7) — 실제 로봇 없이 orchestrator_node.py 전체 흐름을 검증하기 위함</description>
+  <maintainer email="factory-project@example.com">factory-project</maintainer>
+  <license>MIT</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>factory_interfaces</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
