@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>factory_core</name>
+  <version>0.0.1</version>
+  <description>팩토리 프로젝트의 ROS-독립 핵심 로직(Job/JobRunner/InventoryDB) + orchestrator_node.py (WBS 1.2~1.6, 1.8) — 재고 DB와 입출고 Job 상태기계를 ROS2 메시지와 분리해서 단위 테스트 가능하게 만든 패키지</description>
+  <maintainer email="factory-project@example.com">factory-project</maintainer>
+  <license>MIT</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>factory_interfaces</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
