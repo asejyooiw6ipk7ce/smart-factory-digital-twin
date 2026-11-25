@@ -36,14 +36,17 @@ shelf:
 # Fairino SDK는 그리퍼를 Modbus로 직접 다루지 않고, SetGripperConfig/MoveGripper
 # 같은 자체 API로 제어한다 (company=4가 "Dahuan"=DH-Robotics 제조사 코드).
 #
-# ⚠️ device 번호는 아직 미확인이다. Fairino 매뉴얼 예시에는 Dahuan의
-# "PGI-140" 모델(device=0)만 나와있고, 우리가 쓰는 "PGEA-100-40-C"가
-# 몇 번 device로 등록되는지는 실제 로봇/펜던트의 그리퍼 설정 화면에서
-# 직접 확인해야 한다. 일단 0으로 두고, 3.1(그리퍼 제어방식 확정)에서
-# 실제 값으로 바꿔야 한다.
+# ✅ device 번호 확인 완료 (2026-11-25, 펜던트 Gripper > Adapted Device 화면).
+# 실제 로봇 펜던트에서 manufacturer를 DAHUAN으로 바꿔보니 기종(Type) 목록에
+# "PGI-140" 하나뿐이었고, 활성화된 설정(Claw configured)도 이미
+# DAHUAN/PGI-140/Mount location:0으로 등록되어 있었다. 실제 그리퍼
+# 모델명(PGEA-100-40-C, 스트로크 100mm)과는 다르지만, DH-Robotics 그리퍼들은
+# 대부분 같은 통신 프로토콜을 공유하고 Fairino SDK도 position/vel/force를
+# 전부 0~100% 비율로만 주고받으므로(물리적 mm 단위는 SDK 레벨에서 안 따짐)
+# 이 프리셋 그대로 써도 된다. device=0 확정.
 gripper:
   company: 4       # 1 Robotiq / 2 Huiling / 3 Tianji / 4 Dahuan(DH-Robotics) / 5 Zhixing
-  device: 0        # ⚠️ 확인 필요 — 위 설명 참고
+  device: 0        # ✅ 확인됨 — PGI-140 프리셋 (Dahuan 목록에 이것뿐, 실제 펜던트에 이미 활성화되어 있음)
   index: 0         # 그리퍼 번호 (여러 개면 0,1,2...)
   open_pos: 100    # 완전히 벌린 상태, 0~100%
   close_pos: 0     # 완전히 닫은 상태, 0~100%
