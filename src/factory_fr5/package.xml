@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>factory_fr5</name>
+  <version>0.0.1</version>
+  <description>FR5 로봇팔 제어 (WBS 3.3/3.4) — Fairino Python SDK 래퍼(fairino_client.py) + ROS 독립 PICK/PLACE/HOME 로직(fr5_controller.py) + Fr5Task 액션 서버(fr5_node.py). fairino SDK는 apt가 아니라 pip로 설치한다 (pip3 install fairino).</description>
+  <maintainer email="factory-project@example.com">factory-project</maintainer>
+  <license>MIT</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>factory_interfaces</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
