@@ -1,0 +1,20 @@
+# factory.yaml (WBS 1.2 / 1.6)
+#
+# DB가 비어있을 때(최초 1회) InventoryDB가 이 파일을 읽어서 slots 테이블을
+# 채운다. 이미 slots에 데이터가 있으면 이 파일은 무시된다 — 즉 "최초 시드 데이터"
+# 용도이고, 이후 재고 변화는 전부 DB(factory.db)에만 기록된다.
+#
+# level/item_id/item_name/capacity는 실제 선반 구성과 티칭 좌표에 맞춰
+# 자유롭게 수정하면 된다. 지금은 1열 2층 선반을 기준으로 예시를 채워뒀다.
+
+slots:
+  - level: 1
+    item_id: 1
+    item_name: "부품A"
+    initial_quantity: 0
+    capacity: 10
+  - level: 2
+    item_id: 2
+    item_name: "부품B"
+    initial_quantity: 0
+    capacity: 10
