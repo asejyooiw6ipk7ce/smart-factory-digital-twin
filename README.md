@@ -27,9 +27,16 @@ factory_ws/src/
 ## 빌드
 ```bash
 cd factory_ws
+pip3 install --user -r requirements.txt   # numpy 버전 고정 — 아래 "환경 주의사항" 참고
 colcon build
 source install/setup.bash
 ```
+
+## 환경 주의사항
+- **numpy는 꼭 `requirements.txt`에 적힌 버전(1.23.5)을 써야 한다.** 2.x면 cv2가
+  깨지고, 1.24 이상이면 tf_transformations(python3-transforms3d)가 깨진다.
+  이유는 `requirements.txt` 주석에 자세히 적혀있음 — 다른 패키지 설치하다가
+  numpy가 바뀌면 또 재발할 수 있으니 에러 나면 여기부터 의심할 것.
 
 ## 현재 진행 상태
 - [x] 1.1 factory_interfaces 작성

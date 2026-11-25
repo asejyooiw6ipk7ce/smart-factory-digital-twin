@@ -1,0 +1,36 @@
+# requirements.txt (factory_ws)
+#
+# pip으로 설치해야 하는 파이썬 의존성과, 왜 그 버전으로 고정했는지 기록.
+# apt(ros-humble-*, python3-opencv 등)로 설치하는 ROS2 패키지는 여기 안 적는다 —
+# 그건 각 패키지 package.xml의 exec_depend로 관리된다.
+#
+# ===== numpy 버전 고정 (중요) =====
+# 이 워크스페이스는 numpy<1.24 로 고정해야 한다. 그 이유:
+#
+#   1. NumPy 2.x를 쓰면 cv2(OpenCV)가 깨진다.
+#      apt로 설치되는 python3-opencv는 NumPy 1.x ABI로 컴파일되어 있어서,
+#      pip으로 NumPy 2.x가 깔리면(흔히 ~/.local에 사용자 설치로 들어옴)
+#      `import cv2` 시점에 "AttributeError: _ARRAY_API not found" /
+#      "numpy.core.multiarray failed to import" 로 즉시 깨진다.
+#      (factory_limo/aruco_detector.py 가 cv2.aruco를 쓰므로 직접 영향받음)
+#
+#   2. NumPy 1.24 이상을 쓰면 tf_transformations가 깨진다.
+#      apt로 설치되는 python3-transforms3d(ros-humble-tf-transformations가
+#      의존)가 내부적으로 `np.float`를 쓰는데, 이 alias는 NumPy 1.24부터
+#      완전히 제거되었다. 그래서 1.24 이상이면
+#      "AttributeError: module 'numpy' has no attribute 'float'" 로 깨진다.
+#      (factory_limo/world_pose_tracker.py 가 tf_transformations를 씀)
+#
+#   → 그래서 "2.x 미만"도 아니고 "1.24 미만"도 아니고, 정확히 그 사이인
+#     1.21~1.23대 버전을 써야 한다. 2026-11-25에 1.23.5로 실제 검증 완료
+#     (colcon build + python3 -c "from factory_limo... import ..." 성공).
+#
+#   설치: pip3 install --user -r requirements.txt
+#   확인: python3 -c "import numpy; print(numpy.__version__, numpy.__file__)"
+#        → 버전이 1.23.5인지, 경로가 의도한 곳(~/.local)인지 확인
+
+numpy==1.23.5
+
+# ===== 기타 =====
+# config/*.yaml 파싱용. apt의 python3-yaml로도 충분하지만, 혹시 없으면 pip으로.
+pyyaml
